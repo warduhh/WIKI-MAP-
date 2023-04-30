@@ -7,9 +7,9 @@ const router  = express.Router();
   router.get('/:id', (req, res) => { 
   const userID = req.params.id;
   getFavMapsByUser(userID)
-  .then(data => {
-        // template vars res.render('favorite_maps')
+  .then(data => { 
         // map_id: data.rows[0].map_id;
+        // list of maps, which includes map name, not just first map.
         /*
         data.rows output:
           [
@@ -25,6 +25,8 @@ const router  = express.Router();
               }
             ]
          */
+        // template vars res.render('favorite_maps')
+          res.render('favorite_maps', {favMaps: data.rows});
      })
      .catch(err => {
       res
@@ -34,7 +36,6 @@ const router  = express.Router();
         // render ejs
      })
 }); 
- 
  
 
 module.exports = router;
