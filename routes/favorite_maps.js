@@ -1,5 +1,5 @@
 const express = require('express');
-const { getFavMapsByUser, addFavMaps } = require('../db/queries/favorite_maps')
+const { getFavMapsByUser, addFavMaps, removeFavMaps } = require('../db/queries/favorite_maps')
 const router  = express.Router();
 
 
@@ -53,6 +53,23 @@ const router  = express.Router();
           console.log("erorr: ", err);
       })
 });
+
+
+//  3. Delete favorite maps
+  router.post('/:id/delete', (req, res) => {
+    const userID = req.params.id;
+    const mapID = req.body.mapID;
+    removeFavMaps(mapID, userID)
+    getFavMapsByUser(userID)
+    .then(data => {
+      res.render('favorite_maps', {favMaps: data.rows});
+      })
+      .catch(err => {
+        res
+          .status(500)
+          console.log("error: ", err)
+      })
+  });
  
 
 module.exports = router;
