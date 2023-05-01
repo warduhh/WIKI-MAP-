@@ -9,7 +9,14 @@ const getFavMapsByUser = (userID) => {
   WHERE favorite_maps.user_id = $1`, [userID])  
 }
 
+// 2. Query for add favorite_maps route
+const addFavMaps = (mapID, userID) => {
+  return db.query(`INSERT INTO favorite_maps (map_id, user_id) VALUES ($1, $2);`, [mapID, userID])
+  
+}
+
 
 module.exports = { 
-  getFavMapsByUser
+  getFavMapsByUser,
+  addFavMaps
  };
