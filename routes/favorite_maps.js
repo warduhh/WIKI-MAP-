@@ -1,5 +1,5 @@
 const express = require('express');
-const { getFavMapsByUser } = require('../db/queries/favorite_maps')
+const { getFavMapsByUser, addFavMaps } = require('../db/queries/favorite_maps')
 const router  = express.Router();
 
 
@@ -36,6 +36,23 @@ const router  = express.Router();
         // render ejs
      })
 }); 
+ 
+
+// 2.Add favorite maps
+  router.post('/:id', (req, res) => {
+    const userID = req.params.id;
+    const mapID = req.body.mapID
+    addFavMaps(mapID, userID)
+    getFavMapsByUser(userID)
+    .then(data => {
+      res.render('favorite_maps', {favMaps: data.rows});
+      })
+      .catch(err => {
+        res
+          .status(500)
+          console.log("erorr: ", err);
+      })
+});
  
 
 module.exports = router;
