@@ -12,11 +12,16 @@ const getFavMapsByUser = (userID) => {
 // 2. Query for add favorite_maps route
 const addFavMaps = (mapID, userID) => {
   return db.query(`INSERT INTO favorite_maps (map_id, user_id) VALUES ($1, $2);`, [mapID, userID])
-  
+}
+
+// 3. Query for deleting favorite_maps route
+const removeFavMaps = (mapID, userID) => {
+  return db.query(`DELETE FROM favorite_maps WHERE map_id = $1 AND user_id = $2;`, [mapID, userID])     
 }
 
 
 module.exports = { 
   getFavMapsByUser,
-  addFavMaps
+  addFavMaps,
+  removeFavMaps
  };
