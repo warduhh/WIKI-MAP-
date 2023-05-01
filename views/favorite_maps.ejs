@@ -11,6 +11,10 @@
   <ul>
     <% for (map of favMaps) { %>
       <li> <%= map.map_category %> </li>
+      <form method="post" action="/favorite_maps/<%=map.user_id%>">
+        <input type="hidden" name="mapID" value="<%= map.map_id %>">
+        <button type="submit">Favorite</button>
+      </form>
     <%}%>
   </ul>
 </body>
