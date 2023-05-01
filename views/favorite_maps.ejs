@@ -15,6 +15,10 @@
         <input type="hidden" name="mapID" value="<%= map.map_id %>">
         <button type="submit">Favorite</button>
       </form>
+      <form method="post" action="/favorite_maps/<%=map.user_id%>/delete">
+        <input type="hidden" name="mapID" value="<%= map.map_id %>">
+        <button type="submit">Delete</button>
+      </form>
     <%}%>
   </ul>
 </body>
