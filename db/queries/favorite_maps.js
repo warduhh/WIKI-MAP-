@@ -10,8 +10,10 @@ const getFavMapsByUser = (userID) => {
 }
 
 // 2. Query for add favorite_maps route
+// CONFLICT is to prevent duplicate entries
 const addFavMaps = (mapID, userID) => {
-  return db.query(`INSERT INTO favorite_maps (map_id, user_id) VALUES ($1, $2);`, [mapID, userID])
+  return db.query(`INSERT INTO favorite_maps (map_id, user_id) VALUES ($1, $2)
+  ON CONFLICT (map_id, user_id) DO NOTHING;`, [mapID, userID])
 }
 
 // 3. Query for deleting favorite_maps route
