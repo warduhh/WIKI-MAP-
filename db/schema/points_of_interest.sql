@@ -6,7 +6,5 @@ CREATE TABLE points_of_interest (
   latitude NUMERIC NOT NULL,
   longitude NUMERIC NOT NULL,
   map_id INTEGER NOT NULL REFERENCES maps(id),
-  user_id INTEGER NOT NULL REFERENCES users(id),
-  created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-  updated_at TIMESTAMP
+  user_id INTEGER NOT NULL REFERENCES users(id)
 );
