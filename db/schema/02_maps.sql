@@ -8,5 +8,4 @@ CREATE TABLE maps (
   updated_at DATE NOT NULL,
   map_category VARCHAR(255) NOT NULL,
   description TEXT
-
 );
