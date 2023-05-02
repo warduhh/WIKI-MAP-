@@ -1,5 +1,5 @@
 const express = require('express');
-const { getFavMapsByUser, addFavMaps, removeFavMaps } = require('../db/queries/favorite_maps')
+const { getFavMapsByUser, getFavMapsByMapID, addFavMaps, removeFavMaps } = require('../db/queries/favorite_maps')
 const router  = express.Router();
 
 
@@ -36,9 +36,24 @@ const router  = express.Router();
         // render ejs
      })
 }); 
+
+// 2. Browse favorite_maps by map_id (any user) -- Requirement: users can favorite a map
+router.get('/', (req, res) => {
+  const mapID = req.query.mapID
+  getFavMapsByMapID(mapID)
+  .then(data => {
+    console.log("data.rows: ", data.rows)
+    res.render('favorite_maps', { favMaps: data.rows })
+  })
+  .catch(err => {
+    res.
+    status(500)
+    console.log("error: ", err);
+  })
+});
  
 
-// 2.Add favorite maps
+// 3.Add favorite maps
   router.post('/:id', (req, res) => {
     const userID = req.params.id;
     const mapID = req.body.mapID
@@ -55,7 +70,7 @@ const router  = express.Router();
 });
 
 
-//  3. Delete favorite maps
+//  4. Delete favorite maps
   router.post('/:id/delete', (req, res) => {
     const userID = req.params.id;
     const mapID = req.body.mapID;
