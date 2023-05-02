@@ -31,9 +31,10 @@ const router  = express.Router();
      .catch(err => {
       res
         .status(500)
-        console.log("erorr: ", err);
-        // .render() 
-        // render ejs
+        .render('error', {
+          message: 'Something went wrong'
+        });
+        console.log("error: ", err);
      })
 }); 
 
@@ -46,9 +47,12 @@ router.get('/', (req, res) => {
     res.render('favorite_maps', { favMaps: data.rows })
   })
   .catch(err => {
-    res.
-    status(500)
-    console.log("error: ", err);
+    res
+        .status(500)
+        .render('error', {
+          message: 'Something went wrong'
+        });
+        console.log("error: ", err);
   })
 });
  
@@ -64,8 +68,11 @@ router.get('/', (req, res) => {
       })
       .catch(err => {
         res
-          .status(500)
-          console.log("erorr: ", err);
+        .status(500)
+        .render('error', {
+          message: 'Something went wrong'
+        });
+        console.log("error: ", err);
       })
 });
 
@@ -81,8 +88,11 @@ router.get('/', (req, res) => {
       })
       .catch(err => {
         res
-          .status(500)
-          console.log("error: ", err)
+        .status(500)
+        .render('error', {
+          message: 'Something went wrong'
+        });
+        console.log("error: ", err);
       })
   });
  
