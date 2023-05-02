@@ -17,12 +17,13 @@
   <script defer src="/scripts/app.js"></script>
 
   <!-- api -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3gliV9pcSnOtXCNF60wxRMVQthkLRhOw&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.API_KEY %>&callback=initMap" async defer></script>
 
 </head>
 
 <body>
   <h1>Wiki Map 🌍</h1>
+  
   <div id="map"></div>
 
   <script>
