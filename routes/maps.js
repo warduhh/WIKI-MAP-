@@ -50,21 +50,6 @@ router.post('/create', (req, res) => {
   });
 });
 
-// Route to display the edit map form
-router.get('/:id/edit', (req, res) => {
-  Map.findById(req.params.id, (err, map) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send('Internal Server Error');
-    } else if (!map) {
-      res.status(404).send('Map Not Found');
-    } else if (map.user_id !== req.user.id) {
-      res.status(403).send('Forbidden');
-    } else {
-      res.render('edit_map', { map });
-    }
-  });
-});
 
 // Route to handle the edit map form submission
 router.post('/:id/edit', (req, res) => {
@@ -91,7 +76,5 @@ router.post('/:id/edit', (req, res) => {
   });
 });
 
-// Route to handle deleting a map ? Not yet created
-//router.post('/:id/delete',
 
 module.exports = router;
