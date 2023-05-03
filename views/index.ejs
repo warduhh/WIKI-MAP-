@@ -22,9 +22,26 @@
 </head>
 
 <body>
-  <h1>Wiki Map 🌍</h1>
+  <nav>
+    <h1>Wiki Map 🌍</h1>
+    <span>
+      <span class="search-bar">
+        <form action="" method="get">
+          <input type="text" name="query" placeholder="Search...">
+          <button type="submit">Search</button>
+          <button>Profile</button>
+          <button>Login</button>
+        </form>  
+      </span>
+    </span>
+  </nav>
+  <div class="container">
+    <ul class="mapList">
+      <li>List of Maps</li>
+    </ul>
+    <div id="map"></div>
+  </div>
   
-  <div id="map"></div>
 
   <script>
     let map;
