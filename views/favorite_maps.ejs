@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorite Maps</title>
+</head>
+<body>
+  <h1>Favorite Maps</h1>
+  <ul>
+    <% for (map of favMaps) { %>
+      <li> <%= map.map_category %> </li>
+      <form method="post" action="/favorite_maps/<%=map.user_id%>">
+        <input type="hidden" name="mapID" value="<%= map.map_id %>">
+        <button type="submit">Favorite by user</button>
+      </form>
+      <form method="get" action="/favorite_maps?mapID=<%=map.map_id%>">
+        <button type="submit">Favorite by map</button>
+      </form>
+      <form method="post" action="/favorite_maps/<%=map.user_id%>/delete">
+        <input type="hidden" name="mapID" value="<%= map.map_id %>">
+        <button type="submit">Delete</button>
+      </form>
+    <%}%>
+  </ul>
+</body>
+</html>

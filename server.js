@@ -31,6 +31,7 @@ app.use(express.static('public'));
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
+const favoriteMapsRoutes = require('./routes/favorite_maps');
 const pointsOfInterestRoutes = require('./routes/points_of_interest');
 
 // Mount all resource routes
@@ -39,6 +40,9 @@ const pointsOfInterestRoutes = require('./routes/points_of_interest');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
+app.use('/favorite_maps', favoriteMapsRoutes);
+app.use('/api/points_of_interest', pointsOfInterestRoutes);
+
 // Note: mount other resources here, using the same pattern above
 app.use('/api/points_of_interest', pointsOfInterestRoutes);
 

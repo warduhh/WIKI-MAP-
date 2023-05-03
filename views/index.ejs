@@ -4,21 +4,58 @@
 <head>
   <title>Home Page</title>
 
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css">
+  <link rel="stylesheet" href="/vendor/border-box.css">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/layout.css">
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+
+  <!-- api -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.API_KEY %>&callback=initMap" async defer></script>
+
 </head>
 
 <body>
-  <h1>Have fun! 🥔</h1>
+  <nav>
+    <h1>Wiki Map 🌍</h1>
+    <span>
+      <span class="search-bar">
+        <form action="" method="get">
+          <input type="text" name="query" placeholder="Search...">
+          <button type="submit">Search</button>
+          <button>Profile</button>
+          <button>Login</button>
+        </form>  
+      </span>
+    </span>
+  </nav>
+  <div class="container">
+    <ul class="mapList">
+      <li>List of Maps</li>
+    </ul>
+    <div id="map"></div>
+  </div>
+  
+
+  <script>
+    let map;
+    const lat = 43.6532;
+    const lng =  79.3832;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat, lng },
+        zoom: 8,
+      });
+    }
+  </script>
+  <script src="/script.js"></script>
 </body>
 
 </html>
