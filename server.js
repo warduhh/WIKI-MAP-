@@ -44,6 +44,7 @@ app.use('/favorite_maps', favoriteMapsRoutes);
 app.use('/api/points_of_interest', pointsOfInterestRoutes);
 
 // Note: mount other resources here, using the same pattern above
+app.use('/api/points_of_interest', pointsOfInterestRoutes);
 
 // Home page
 // Warning: avoid creating more routes in this file!
