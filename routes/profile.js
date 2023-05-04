@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getFavMapsByUser, getFavMapsByMapID } = require('../db/queries/favorite_maps')
+const { getFavMapsByUser, getFavMapsByMapID, addFavMaps } = require('../db/queries/favorite_maps')
 
 // 1. Read favorite maps (authenticated user) -- Requirement: a user can view their favorite maps in their profile. 
   router.get('/:id', (req, res) => { 
@@ -41,7 +41,6 @@ router.get('/', (req, res) => {
   const mapID = req.query.mapID
   getFavMapsByMapID(mapID)
   .then(data => {
-    console.log("data.rows: ", data.rows)
     res.render('profile', { favMaps: data.rows })
   })
   .catch(err => {
@@ -52,6 +51,15 @@ router.get('/', (req, res) => {
         });
         console.log("error: ", err);
   })
+});
+
+
+// 3.Add favorite maps
+  router.post('/:userID', (req, res) => { 
+    const { userID }  = req.params;
+    const { mapID } = req.body;
+    addFavMaps(mapID, userID)
+    res.redirect(`/profile/${userID}`);
 });
 
 
