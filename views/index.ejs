@@ -17,7 +17,6 @@
   <script defer src="/scripts/app.js"></script>
 
   <!-- api -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.API_KEY %>&callback=initMap" async defer></script>
 
 </head>
 
@@ -31,7 +30,7 @@
           <button type="submit">Search</button>
           <button>Profile</button>
           <button>Login</button>
-        </form>  
+        </form>
       </span>
     </span>
   </nav>
@@ -41,9 +40,9 @@
     </ul>
     <div id="map"></div>
   </div>
-  
 
-  <script>
+
+  <!-- <script>
     let map;
     const lat = 43.6532;
     const lng =  79.3832;
@@ -54,8 +53,11 @@
         zoom: 8,
       });
     }
-  </script>
-  <script src="/script.js"></script>
+
+  </script> -->
+  <script src="/scripts/script.js"></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.API_KEY %>&callback=initMap" async defer></script>
 </body>
 
 </html>
