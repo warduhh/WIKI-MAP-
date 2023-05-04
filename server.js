@@ -29,19 +29,24 @@ app.use(express.static('public'));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const userApiRoutes = require('./routes/users-api');
+const mapsRoutes = require('./routes/maps');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const favoriteMapsRoutes = require('./routes/favorite_maps');
 const pointsOfInterestRoutes = require('./routes/points_of_interest');
+const indexRoutes = require('./routes/index');
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
+app.use('/', indexRoutes);
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/favorite_maps', favoriteMapsRoutes);
 app.use('/api/points_of_interest', pointsOfInterestRoutes);
+app.use('/maps', mapsRoutes);
 
 // Note: mount other resources here, using the same pattern above
 app.use('/api/points_of_interest', pointsOfInterestRoutes);
@@ -50,9 +55,7 @@ app.use('/api/points_of_interest', pointsOfInterestRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
