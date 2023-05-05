@@ -3,9 +3,17 @@ const db = require('../connection');
 //Query to get all mapps
 const getAllMaps = function (){
   return db.query(
-    'SELECT map_category FROM maps;')
+    'SELECT DISTINCT(map_category), creator_id, id FROM maps;')
     .then((res) => {
-      return res.rows;
+      const results = [];
+      const ids = [];
+      res.rows.map(row => {
+        if(!ids.includes(row.map_category)) {
+          results.push(row)
+          ids.push(row.map_category);
+        }
+      })
+      return results;
     });
 };
 

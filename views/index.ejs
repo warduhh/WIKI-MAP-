@@ -25,11 +25,11 @@
   <nav>
     <h1>Wiki Map 🌍</h1>
     <span>
-      <span class="search-bar">
+      <span>
         <form action="" method="get">
-          <input type="text" name="query" placeholder="Search...">
-          <button type="submit">Search</button>
-          <button>Profile</button>
+          <button>
+            <a href="/profile">Profile</a>
+          </button>
           <button>Login</button>
         </form>
       </span>
@@ -37,15 +37,21 @@
   </nav>
   <div class="container">
     <ul class="mapList">
-      List of Maps
       <!-- Loop through the maps and display each one -->
       <% maps.forEach(function(map) { %>
-        <li><a href="/maps/<%= map.id %>"><%= map.map_category %> - <%= map.description %></a></li>
+        <li>
+          <a href="/maps/<%= map.id %>">
+            <%= map.map_category %> - <%= map.description %>
+          </a>
+
+          <!-- favorite map by userID -->
+          <!-- id is hardcoded as 1, will need to replace as logged in user -->
+          <form method="post" action="/profile/1">
+            <button type="submit">♥</button>
+            <input type="hidden" name="mapID" value="<%= map.id %>">
+          </form>
+        </li>
       <% }); %>
-
-
-
-
     </ul>
     <div id="map"></div>
   </div>
