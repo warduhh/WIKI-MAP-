@@ -42,7 +42,9 @@ router.get('/', (req, res) => {
     const { userID }  = req.params;
     const { mapID } = req.body;
     addFavMaps(mapID, userID)
-    res.redirect(`/profile/${userID}`);
+    .then(() => {
+      res.redirect(`/profile/${userID}`);
+    })
 });
 
 
