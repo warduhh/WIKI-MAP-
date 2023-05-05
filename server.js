@@ -34,6 +34,7 @@ const usersRoutes = require('./routes/users');
 const favoriteMapsRoutes = require('./routes/favorite_maps');
 const pointsOfInterestRoutes = require('./routes/points_of_interest');
 const profileRoutes = require('./routes/profile');
+const indexRoutes = require('./routes/index');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -41,12 +42,13 @@ const profileRoutes = require('./routes/profile');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
-app.use('/favorite_maps', favoriteMapsRoutes);
-app.use('/api/points_of_interest', pointsOfInterestRoutes);
 
 // Note: mount other resources here, using the same pattern above
+app.use('/', indexRoutes);
 app.use('/api/points_of_interest', pointsOfInterestRoutes);
+app.use('/favorite_maps', favoriteMapsRoutes);
 app.use('/profile', profileRoutes);
+
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
