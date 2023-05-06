@@ -52,12 +52,14 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 
-// Note: mount other resources here, using the same pattern above
-app.use('/', indexRoutes);
-app.use('/api/points_of_interest', pointsOfInterestRoutes);
 app.use('/favorite_maps', favoriteMapsRoutes);
+app.use('/points_of_interest', pointsOfInterestRoutes);
+
+
+// Note: mount other resources here, using the same pattern above
 app.use('/profile', profileRoutes);
 app.use('/maps', mapsRoutes);
+
 
 // Home page
 // Warning: avoid creating more routes in this file!

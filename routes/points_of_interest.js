@@ -1,61 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const pointQueries = require('../db/queries/points_of_interest');
-
-router.get('/', (req, res) => {
-  const { map_id, description } = req.query;
-  pointQueries.getPointsByDescription(map_id, description)
-    .then(points => {
-      res.json({ points });
-    })
-    .catch(err => {
-      res.status(500).json({ error: err.message });
-    });
-});
-
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  pointQueries.getPointById(id)
-    .then(point => {
-      res.json({ point });
-    })
-    .catch(err => {
-      res.status(500).json({ error: err.message });
-    });
-});
+const db = require('../db/connection');
 
 router.post('/', (req, res) => {
-  const { title, description, image_url, latitude, longitude, map_id, user_id } = req.body;
-  pointQueries.createPoint(title, description, image_url, latitude, longitude, map_id, user_id)
-    .then(point => {
-      res.json({ point });
-    })
-    .catch(err => {
-      res.status(500).json({ error: err.message });
-    });
-});
-
-router.put('/:id', (req, res) => {
-  const { id } = req.params;
-  const { title, description, image_url, latitude, longitude } = req.body;
-  pointQueries.updatePoint(id, title, description, image_url, latitude, longitude)
-    .then(point => {
-      res.json({ point });
-    })
-    .catch(err => {
-      res.status(500).json({ error: err.message });
-    });
-});
-
-router.delete('/:id', (req, res) => {
-  const { id } = req.params;
-  pointQueries.deletePoint(id)
-    .then(() => {
-      res.status(204).end();
-    })
-    .catch(err => {
-      res.status(500).json({ error: err.message });
-    });
+  const { title, description, latitude, longitude, map_id, user_id } = req.body;
+  db.query(
+    'INSERT INTO points_of_interest (title, description, latitude, longitude, map_id, user_id) VALUES ($1, $2, $3, $4, $5, $6)',
+    [title, description, latitude, longitude, map_id, user_id],
+    (err, result) => {
+      if (err) {
+        console.error('Error saving marker:', err);
+        res.status(500).json({ error: err.message });
+      } else {
+        console.log('Marker saved successfully!');
+        res.json(result.rows[0]);
+      }
+    }
+  );
 });
 
 module.exports = router;
+
+
+
+
+
+
