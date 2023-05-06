@@ -3,21 +3,12 @@ const db = require('../connection');
 //Query to get all mapps
 const getAllMaps = function (){
   return db.query(
-<<<<<<< HEAD
-    'SELECT DISTINCT (map_category), creator_id, id FROM maps;')
-    .then((res) => {
-      const results = [];
-      const ids =[];
-      res.rows.map(row => {
-        if(!ids.includes(row.map_catrgory)) {
-=======
     'SELECT DISTINCT(map_category), creator_id, id FROM maps;')
     .then((res) => {
       const results = [];
       const ids = [];
       res.rows.map(row => {
         if(!ids.includes(row.map_category)) {
->>>>>>> master
           results.push(row)
           ids.push(row.map_category);
         }
