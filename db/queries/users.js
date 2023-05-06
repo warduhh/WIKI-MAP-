@@ -1,13 +1,15 @@
 const db = require('../connection');
 
-const addUsers = () => {
-  return db.query('SELECT * FROM users;')
-    .then(data => {
-      return data.rows;
-    });
+const userLogin = function(user) {
+  const queryString = `
+  SELECT id, email, password
+  FROM users
+  WHERE email = $1`;
+
+  const params = [user.email];
+  return db.query(queryString, params);
+
 };
 
-
-
-module.exports ={ addUsers };
+module.exports = { userLogin };
 
