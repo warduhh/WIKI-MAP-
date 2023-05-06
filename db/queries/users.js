@@ -1,10 +1,13 @@
 const db = require('../connection');
 
-const getUsers = () => {
+const addUsers = () => {
   return db.query('SELECT * FROM users;')
     .then(data => {
       return data.rows;
     });
 };
 
-module.exports = { getUsers };
+
+
+module.exports ={ addUsers };
+
