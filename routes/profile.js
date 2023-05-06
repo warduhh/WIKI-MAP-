@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const { getFavMapsByUser, getFavMapsByMapID, addFavMaps } = require('../db/queries/favorite_maps')
 
+<<<<<<< HEAD
 // 1. Read favorite maps (authenticated user) -- Requirement: a user can view their favorite maps in their profile.
   router.get('/:id', (req, res) => {
   const userID = req.params.id;
@@ -25,6 +26,14 @@ const { getFavMapsByUser, getFavMapsByMapID, addFavMaps } = require('../db/queri
          */
         // template vars res.render('favorite_maps')
           res.render('profile', {favMaps: data.rows});
+=======
+// 1. Read favorite maps (authenticated user) -- Requirement: a user can view their favorite maps in their profile. 
+  router.get('/:id', (req, res) => { 
+  const userID = req.params.id;
+  getFavMapsByUser(userID)
+  .then(data => { 
+      res.render('profile', {favMaps: data.rows});
+>>>>>>> master
      })
      .catch(err => {
       res
@@ -34,7 +43,11 @@ const { getFavMapsByUser, getFavMapsByMapID, addFavMaps } = require('../db/queri
         });
         console.log("error: ", err);
      })
+<<<<<<< HEAD
 });
+=======
+}); 
+>>>>>>> master
 
 // 2. Browse favorite_maps by map_id (any user) -- Requirement: users can favorite a map
 router.get('/', (req, res) => {
@@ -55,6 +68,7 @@ router.get('/', (req, res) => {
 
 
 // 3.Add favorite maps
+<<<<<<< HEAD
   router.post('/:userID', (req, res) => {
     const { userID }  = req.params;
     const { mapID } = req.body;
@@ -68,3 +82,16 @@ router.get('/', (req, res) => {
 
 
 module.exports = router;
+=======
+  router.post('/:userID', (req, res) => { 
+    const { userID }  = req.params;
+    const { mapID } = req.body;
+    addFavMaps(mapID, userID)
+    .then(() => {
+      res.redirect(`/profile/${userID}`);
+    })
+});
+
+
+module.exports = router;
+>>>>>>> master

@@ -38,6 +38,7 @@ const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const favoriteMapsRoutes = require('./routes/favorite_maps');
 const pointsOfInterestRoutes = require('./routes/points_of_interest');
+const profileRoutes = require('./routes/profile');
 const indexRoutes = require('./routes/index');
 const loginRoutes = require('./routes/login');
 
@@ -50,17 +51,17 @@ app.use('/login', loginRoutes);
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
-app.use('/favorite_maps', favoriteMapsRoutes);
-app.use('/api/points_of_interest', pointsOfInterestRoutes);
-app.use('/maps', mapsRoutes);
 
 // Note: mount other resources here, using the same pattern above
+app.use('/', indexRoutes);
 app.use('/api/points_of_interest', pointsOfInterestRoutes);
+app.use('/favorite_maps', favoriteMapsRoutes);
+app.use('/profile', profileRoutes);
+app.use('/maps', mapsRoutes);
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-
 
 
 app.listen(PORT, () => {
