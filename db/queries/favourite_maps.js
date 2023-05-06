@@ -9,11 +9,8 @@ const router  = express.Router();
     const userID = req.params.id;
     const mapID = req.body.mapID;
     removeFavMaps(mapID, userID)
-    .then(() => {
-      res.redirect(`/profile/${userID}`);
-    })
-    
+    res.redirect(`/profile/${userID}`);
   });
- 
+
 
 module.exports = router;
